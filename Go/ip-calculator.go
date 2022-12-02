@@ -4,7 +4,18 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+func breakIntoOctets(ip string) {
+	split := strings.Split(ip, ".")
+	fmt.Println(split[0])
+	fmt.Println(split[1])
+	fmt.Println(split[2])
+	fmt.Println(split[3])
+}
 
 // FUNCTION
 // publicOrPrivateIP() determines if an IP is a public
@@ -17,5 +28,5 @@ func main() {
 	var ip string
 
 	fmt.Scanln(&ip)
-	publicOrPrivateIP(ip)
+	breakIntoOctets(ip)
 }
