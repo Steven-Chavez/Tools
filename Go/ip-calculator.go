@@ -6,10 +6,16 @@ package main
 
 import "fmt"
 
+// FUNCTION
+// publicOrPrivateIP() determines if an IP is a public
+// of private ip
 func publicOrPrivateIP(ip string) {
-
+	fmt.Println(ip)
 }
 
 func main() {
-	fmt.Println("vim-go")
+	var ip string
+
+	fmt.Scanln(&ip)
+	publicOrPrivateIP(ip)
 }
