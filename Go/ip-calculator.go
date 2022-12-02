@@ -12,27 +12,29 @@ import (
 
 func breakIntoOctets(ip string) [4]int {
 
+	var err error
 	var octet_str []string
-
 	var octet_int [4]int
-	var oct1 string
-	var oct2 string
-	var oct3 string
-	var oct4 string
+	var oct1 int
+	var oct2 int
+	var oct3 int
+	var oct4 int
 
 	octet_str = strings.Split(ip, ".")
 
-	oct1 = octet_str[0]
-	oct2 = octet_str[1]
-	oct3 = octet_str[2]
-	oct4 = octet_str[3]
+	//var test int
+	//var err bool
 
-	octet_int[0], err = strconv.Atoi(oct1)
-	octet_int[1], err = strconv.Atoi(oct2)
-	octet_int[2], err = strconv.Atoi(oct3)
-	octet_int[3], err = strconv.Atoi(oct4)
-
+	oct1, err = strconv.Atoi(octet_str[0])
+	oct2, err = strconv.Atoi(octet_str[1])
+	oct3, err = strconv.Atoi(octet_str[2])
+	oct4, err = strconv.Atoi(octet_str[3])
 	fmt.Println(err)
+
+	octet_int[0] = oct1
+	octet_int[1] = oct2
+	octet_int[2] = oct3
+	octet_int[3] = oct4
 
 	return octet_int
 }
