@@ -6,6 +6,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 )
@@ -13,7 +14,6 @@ import (
 func breakIntoOctets(ip string) [4]int {
 
 	// VARIABLES
-
 	// Error var for strconv
 	var err error
 
@@ -36,7 +36,10 @@ func breakIntoOctets(ip string) [4]int {
 	oct3, err = strconv.Atoi(octet_str[2])
 	oct4, err = strconv.Atoi(octet_str[3])
 
-	fmt.Println(err)
+	// Check for error
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// Populate int array with octets
 	octet_int[0] = oct1
