@@ -11,6 +11,10 @@ import (
 	"strings"
 )
 
+// FUNCTION
+// Takes string IP, breaks it into octets, converts
+// each octet into integers, assigns the octets to a
+// 4 integer array, and returns.
 func breakIntoOctets(ip string) [4]int {
 
 	// VARIABLES
