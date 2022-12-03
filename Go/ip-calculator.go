@@ -58,14 +58,15 @@ func breakIntoOctets(ip string) [4]int {
 // FUNCTION
 // publicOrPrivateIP() determines if an IP is a public
 // of private ip
-func publicOrPrivateIP(ip string) {
+func publicOrPrivateIP(ip [4]int) {
 	fmt.Println(ip)
 }
 
 func main() {
 	var ip string
 
+	fmt.Print("Enter an IP: ")
 	fmt.Scanln(&ip)
 	split := breakIntoOctets(ip)
-	fmt.Println(split)
+	publicOrPrivateIP(split)
 }
