@@ -84,6 +84,8 @@ func publicOrPrivateIP(ip [4]int) {
 		} else {
 			fmt.Println(public_str)
 		}
+	} else {
+		fmt.Println(public_str)
 	}
 }
 
