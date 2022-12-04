@@ -55,10 +55,28 @@ func breakIntoOctets(ip string) [4]int {
 	return octet_int
 }
 
+func determineIPClass(ip [4]int) {
+
+	// Variables
+	class_A := "IP Class - A"
+	class_B := "IP Class - B"
+	class_C := "IP Class - C"
+	oct1 := ip[0]
+
+	if oct1 >= 0 && oct1 <= 127 {
+		fmt.Println(class_A)
+	} else if oct1 >= 128 && oct1 <= 191 {
+		fmt.Println(class_B)
+	} else if oct1 >= 192 && oct1 <= 223 {
+		fmt.Println(class_C)
+	}
+
+}
+
 // FUNCTION
 // publicOrPrivateIP() determines if an IP is a public
 // of private ip
-func publicOrPrivateIP(ip [4]int) {
+func determinePublicOrPrivate(ip [4]int) {
 
 	// Variables
 	private_str := "IP Status (public/private) - Private"
@@ -95,5 +113,7 @@ func main() {
 	fmt.Print("Enter an IP: ")
 	fmt.Scanln(&ip)
 	split := breakIntoOctets(ip)
-	publicOrPrivateIP(split)
+	determinePublicOrPrivate(split)
+	determineIPClass(split)
+
 }
