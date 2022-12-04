@@ -55,6 +55,8 @@ func breakIntoOctets(ip string) [4]int {
 	return octet_int
 }
 
+// FUNCTION
+// Determines the class of an IP
 func determineIPClass(ip [4]int) {
 
 	// Variables
@@ -63,6 +65,10 @@ func determineIPClass(ip [4]int) {
 	class_C := "IP Class - C"
 	oct1 := ip[0]
 
+	// IP Classes
+	// A - 0-127
+	// B - 128-191
+	// C - 192-223
 	if oct1 >= 0 && oct1 <= 127 {
 		fmt.Println(class_A)
 	} else if oct1 >= 128 && oct1 <= 191 {
