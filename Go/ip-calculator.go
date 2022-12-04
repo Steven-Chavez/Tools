@@ -60,13 +60,16 @@ func breakIntoOctets(ip string) [4]int {
 // of private ip
 func publicOrPrivateIP(ip [4]int) {
 
+	// Variables
 	private_str := "IP Status (public/private) - Private"
 	public_str := "IP Status (public/private) - Public"
 	oct1 := ip[0]
 	oct2 := ip[1]
-	//oct3 := ip[2]
-	//oct4 := ip[3]
 
+	// Private IP ranges
+	// 10.0.0.0 - 10.255.255.255
+	// 192.168.0.0 - 192.168.255.255
+	// 172.16.0.0 - 172.31.255.255
 	if oct1 == 10 {
 		fmt.Println(private_str)
 	} else if oct1 == 192 {
@@ -76,14 +79,12 @@ func publicOrPrivateIP(ip [4]int) {
 			fmt.Println(public_str)
 		}
 	} else if oct1 == 172 {
-
 		if oct2 >= 16 && oct2 <= 31 {
 			fmt.Println(private_str)
 		} else {
 			fmt.Println(public_str)
 		}
 	}
-
 }
 
 func main() {
