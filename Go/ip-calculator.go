@@ -115,7 +115,7 @@ func determinePublicOrPrivate(ip [4]int) {
 
 // FUNCTION
 func sanatizeInput(ip string) bool {
-
+	var ip_bool bool
 	length := len([]rune(ip))
 
 	if length >= 7 && length <= 15 {
@@ -124,19 +124,27 @@ func sanatizeInput(ip string) bool {
 
 		for i := 0; i < length; i++ {
 
-			fmt.Println(i)
-		}
+			var err error
 
-		return true
-		/*	_, err := strconv.Atoi(octet_str[3])
+			_, err = strconv.Atoi(octet_str[i])
+
 			if err == nil {
-				return true
+
+				var length int = len([]rune(octet_str[i]))
+
+				if length >= 1 && length <= 3 {
+					ip_bool = true
+				} else {
+					return false
+				}
 			} else {
 				return false
-			}*/
+			}
+		}
 	} else {
 		return false
 	}
+	return ip_bool
 }
 
 func main() {
