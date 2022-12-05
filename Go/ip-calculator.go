@@ -115,35 +115,53 @@ func determinePublicOrPrivate(ip [4]int) {
 
 // FUNCTION
 func sanatizeInput(ip string) bool {
+	// variables
 	var ip_bool bool
 	length := len([]rune(ip))
 
+	// First check to see if the input is within range
+	// of the min and max lenth an IP can be.
+	// min: 0.0.0.0 = 7
+	// max: 255.255.255.255 = 15
 	if length >= 7 && length <= 15 {
+
+		// split ip into octets
 		octet_str := strings.Split(ip, ".")
+
+		// Obtain the length of the new array
+		// Should be 4 because there are 4 octets
+		// in an IP address.
 		length = len(octet_str)
 
+		// Loop through each octet to see if the
+		// values are numeric and within range
 		for i := 0; i < length; i++ {
 
+			// Variable to hold error message
 			var err error
 
+			// Convert each octet into an int
 			_, err = strconv.Atoi(octet_str[i])
 
-			if err == nil {
+			if err == nil { // The octet was a number
 
+				// Obtain the length of the octet
 				var length int = len([]rune(octet_str[i]))
 
+				// Each octet must be between 1 and 3 digits
 				if length >= 1 && length <= 3 {
 					ip_bool = true
 				} else {
 					return false
 				}
-			} else {
+			} else { // The octet was not a number
 				return false
 			}
 		}
-	} else {
+	} else { // Input is below 7 or higher than 15
 		return false
 	}
+
 	return ip_bool
 }
 
