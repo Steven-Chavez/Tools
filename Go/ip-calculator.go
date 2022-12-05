@@ -113,13 +113,40 @@ func determinePublicOrPrivate(ip [4]int) {
 	}
 }
 
+// FUNCTION
+func sanatizeInput(ip string) bool {
+
+	length := len([]rune(ip))
+
+	if length >= 7 && length <= 15 {
+		octet_str := strings.Split(ip, ".")
+		length = len(octet_str)
+
+		for i := 0; i < length; i++ {
+
+			fmt.Println(i)
+		}
+
+		return true
+		/*	_, err := strconv.Atoi(octet_str[3])
+			if err == nil {
+				return true
+			} else {
+				return false
+			}*/
+	} else {
+		return false
+	}
+}
+
 func main() {
 	var ip string
 
 	fmt.Print("Enter an IP: ")
 	fmt.Scanln(&ip)
-	split := breakIntoOctets(ip)
-	determinePublicOrPrivate(split)
-	determineIPClass(split)
+	//split := breakIntoOctets(ip)
+	//determinePublicOrPrivate(split)
+	//determineIPClass(split)
+	fmt.Println(sanatizeInput(ip))
 
 }
