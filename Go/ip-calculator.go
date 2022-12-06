@@ -114,6 +114,7 @@ func determinePublicOrPrivate(ip [4]int) {
 }
 
 // FUNCTION
+// Sanatizes input to ensure it's actually an IP.
 func sanatizeInput(ip string) bool {
 	// variables
 	var ip_bool bool
