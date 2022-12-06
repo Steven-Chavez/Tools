@@ -170,9 +170,18 @@ func main() {
 
 	fmt.Print("Enter an IP: ")
 	fmt.Scanln(&ip)
-	//split := breakIntoOctets(ip)
-	//determinePublicOrPrivate(split)
-	//determineIPClass(split)
-	fmt.Println(sanatizeInput(ip))
+	var realIP bool = sanatizeInput(ip)
 
+	if realIP == true {
+		fmt.Print("\n")
+		fmt.Println("---------- IP INFO ----------")
+		fmt.Print("\n")
+		split := breakIntoOctets(ip)
+		fmt.Println("IP Entered -", ip)
+		determinePublicOrPrivate(split)
+		determineIPClass(split)
+		fmt.Print("\n")
+	} else {
+		fmt.Println("ERROR: Not an IP!")
+	}
 }
