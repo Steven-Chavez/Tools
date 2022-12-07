@@ -85,7 +85,7 @@ func determineIPClass(ip [4]int) {
 // FUNCTION
 // publicOrPrivateIP() determines if an IP is a public
 // of private ip
-func determinePublicOrPrivate(ip [4]int) {
+func isPrivate(ip [4]int) bool {
 
 	// Variables
 	private_str := "IP Status (public/private) - Private"
@@ -99,20 +99,26 @@ func determinePublicOrPrivate(ip [4]int) {
 	// 172.16.0.0 - 172.31.255.255
 	if oct1 == 10 {
 		fmt.Println(private_str)
+		return true
 	} else if oct1 == 192 {
 		if oct2 == 168 {
 			fmt.Println(private_str)
+			return true
 		} else {
 			fmt.Println(public_str)
+			return false
 		}
 	} else if oct1 == 172 {
 		if oct2 >= 16 && oct2 <= 31 {
 			fmt.Println(private_str)
+			return true
 		} else {
 			fmt.Println(public_str)
+			return false
 		}
 	} else {
 		fmt.Println(public_str)
+		return false
 	}
 }
 
@@ -211,9 +217,12 @@ func main() {
 		fmt.Print("\n")
 		split := breakIntoOctets(ip)
 		fmt.Println("IP Entered -", ip)
-		determinePublicOrPrivate(split)
+		ipstatus := isPrivate(split)
 		determineIPClass(split)
 		fmt.Print("\n")
+		if ipstatus == false {
+			getIpInfo(ip)
+		}
 	} else {
 		fmt.Println("ERROR: Not an IP!")
 	}
