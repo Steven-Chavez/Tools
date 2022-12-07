@@ -6,7 +6,10 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -164,6 +167,35 @@ func sanatizeInput(ip string) bool {
 	}
 
 	return ip_bool
+}
+
+func getIpInfo(ip string) {
+	var err error
+	var token []byte
+	var url string
+	var resp *http.Response
+
+	token, err = os.ReadFile("/home/steven/api/ipinfo.txt")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	url = "https://ipinfo.io/" + ip + "?token=" + string(token)
+	url = strings.Replace(url, "\n", "", -1)
+
+	resp, err = http.Get(url)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	defer resp.Body.Close()
+	bodyBytes, _ := ioutil.ReadAll(resp.Body)
+
+	// Convert response body to string
+	bodyString := string(bodyBytes)
+	fmt.Println("API Response as String:\n" + bodyString)
 }
 
 func main() {
