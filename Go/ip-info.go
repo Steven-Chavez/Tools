@@ -175,27 +175,37 @@ func sanatizeInput(ip string) bool {
 	return ip_bool
 }
 
+// FUNCTION
+// Pulls IP information from ipinfo.io via a REST API call
 func getIpInfo(ip string) {
+
+	// Variables
 	var err error
 	var token []byte
 	var url string
 	var resp *http.Response
 
+	// Pull ipinfo.io token from file
 	token, err = os.ReadFile("/home/steven/api/ipinfo.txt")
 
+	// Log any errors
 	if err != nil {
 		log.Fatalln(err)
 	}
 
+	// Build URL for REST API call and strip \n
 	url = "https://ipinfo.io/" + ip + "?token=" + string(token)
 	url = strings.Replace(url, "\n", "", -1)
 
+	// Send REST API url and obtain response and error
 	resp, err = http.Get(url)
 
+	// Log any errors
 	if err != nil {
 		log.Fatalln(err)
 	}
 
+	// Close response
 	defer resp.Body.Close()
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
 
