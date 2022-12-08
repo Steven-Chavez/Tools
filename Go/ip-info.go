@@ -215,21 +215,37 @@ func getIpInfo(ip string) {
 }
 
 func main() {
+	// Variable
 	var ip string
 
+	// Print menu and scan input
 	fmt.Print("Enter an IP: ")
 	fmt.Scanln(&ip)
+
+	// Sanatize to insure inpute is an IP
 	var realIP bool = sanatizeInput(ip)
 
+	// If real IP continue
 	if realIP == true {
+
+		// Print outputs
 		fmt.Print("\n")
 		fmt.Println("---------- IP INFO ----------")
 		fmt.Print("\n")
+
+		// Split IP into octets
 		split := breakIntoOctets(ip)
+
+		// Print output
 		fmt.Println("IP Entered -", ip)
+
+		// Split string IP into int and
+		// determine if the ip is private or public
 		ipstatus := isPrivate(split)
 		determineIPClass(split)
 		fmt.Print("\n")
+
+		// if status is public/false call REST API
 		if ipstatus == false {
 			getIpInfo(ip)
 		}
