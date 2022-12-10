@@ -4,8 +4,6 @@
 
 package main
 
-import "fmt"
-
 // CREATE FUNCTIONS FOR EACH TASK
 // -sanitizer
 // -spliter
@@ -13,8 +11,19 @@ import "fmt"
 // -IP's in Range
 // -CIDR IP Range
 // -Subnet Mask
-func sanitizeInput() {
-	fmt.Println("Sanitizing")
+
+func sanitizeInput(ip string) bool {
+	// variables
+	var ip_bool bool
+	length := len([]rune(ip))
+
+	// First check to see if the input is within range
+	// of the min and max lenth an IP can be.
+	// min: 0.0.0.0/0 = 9
+	// max: 255.255.255.255/00 = 18
+	if length >= 9 && length <= 18 {
+
+	}
 }
 
 func main() {
