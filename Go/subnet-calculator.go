@@ -26,19 +26,19 @@ import (
 // 000.000.000.000/00
 func sanitizeInput(ip string) bool {
 
+	// Regex pattern used to determine valid IP w/CIDR
 	var regex string = "^[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\/[\\d]{1,2}$"
 
+	// Use regexp to see if regex matches input
 	found, err := regexp.MatchString(regex, ip)
 
-	fmt.Println("Error", err)
-	fmt.Println("Found", found)
-
+	// Log error
 	if err != nil {
 		log.Fatalln(err)
 	}
 
+	// If regex matches return true if not return false
 	if found == true {
-		fmt.Println(found)
 		return true
 	} else {
 		return false
