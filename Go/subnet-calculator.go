@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -20,18 +21,31 @@ import (
 // -Subnet Mask
 
 func splitIP(ip string) [5]int {
-	//var err error
 
+	// Variables
+	var err error
 	var split_str []string
 	var split_int [5]int
 
+	// Split input into octets
 	split_str = strings.Split(ip, ".")
 	split_cidr := strings.Split(split_str[3], "/")
 
+	// Update slice with split data
 	split_str[3] = split_cidr[0]
 	split_str = append(split_str, split_cidr[1])
 
-	fmt.Println(split_str)
+	// Convert split string into ints
+	split_int[0], err = strconv.Atoi(split_str[0])
+	split_int[1], err = strconv.Atoi(split_str[1])
+	split_int[2], err = strconv.Atoi(split_str[2])
+	split_int[3], err = strconv.Atoi(split_str[3])
+	split_int[4], err = strconv.Atoi(split_str[4])
+
+	// Log error
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	return split_int
 }
