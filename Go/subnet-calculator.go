@@ -12,6 +12,11 @@ import (
 	"strings"
 )
 
+//Output Variables
+var ipEntered string
+
+//var totalIPs strings
+
 // CREATE FUNCTIONS FOR EACH TASK
 // xsanitizer
 // xspliter
@@ -19,6 +24,12 @@ import (
 // -IP's in Range
 // -CIDR IP Range
 // -Subnet Mask
+
+// FUNCTION
+// Determine the total number of IP's based on CIDR
+func getTotalIPs(cidr int) {
+
+}
 
 // FUNCTION
 // Split IP input into workable segments
@@ -73,6 +84,7 @@ func sanitizeInput(ip string) bool {
 
 	// If regex matches return true if not return false
 	if found == true {
+		ipEntered = ip
 		return true
 	} else {
 		return false
@@ -93,6 +105,7 @@ func main() {
 	if realIP == true {
 		test := splitIP(ip)
 		fmt.Println(test)
+		fmt.Print("Entered IP: ", ipEntered, "\n")
 	} else {
 		fmt.Println("Not an IP address with CIDR")
 	}
