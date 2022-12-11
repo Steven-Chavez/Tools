@@ -11,7 +11,7 @@ import (
 )
 
 // CREATE FUNCTIONS FOR EACH TASK
-// -sanitizer
+// xsanitizer
 // -spliter
 // -CIDR
 // -IP's in Range
@@ -56,5 +56,9 @@ func main() {
 	// Sanatize to insure inpute is an IP
 	var realIP bool = sanitizeInput(ip)
 
-	fmt.Println(realIP)
+	if realIP == true {
+		fmt.Println(ip)
+	} else {
+		fmt.Println("Not an IP address with CIDR")
+	}
 }
