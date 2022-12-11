@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+	"strings"
 )
 
 // CREATE FUNCTIONS FOR EACH TASK
@@ -17,6 +18,23 @@ import (
 // -IP's in Range
 // -CIDR IP Range
 // -Subnet Mask
+
+func splitIP(ip string) [5]int {
+	//var err error
+
+	var split_str []string
+	var split_int [5]int
+
+	split_str = strings.Split(ip, ".")
+	split_cidr := strings.Split(split_str[3], "/")
+
+	split_str[3] = split_cidr[0]
+	split_str = append(split_str, split_cidr[1])
+
+	fmt.Println(split_str)
+
+	return split_int
+}
 
 // FUNCTION
 // Sanitize input to verify is the input is an IP with a CIDR
@@ -57,7 +75,8 @@ func main() {
 	var realIP bool = sanitizeInput(ip)
 
 	if realIP == true {
-		fmt.Println(ip)
+		test := splitIP(ip)
+		fmt.Println(test)
 	} else {
 		fmt.Println("Not an IP address with CIDR")
 	}
