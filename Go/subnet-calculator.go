@@ -14,12 +14,14 @@ import (
 
 // CREATE FUNCTIONS FOR EACH TASK
 // xsanitizer
-// -spliter
+// xspliter
 // -CIDR
 // -IP's in Range
 // -CIDR IP Range
 // -Subnet Mask
 
+// FUNCTION
+// Split IP input into workable segments
 func splitIP(ip string) [5]int {
 
 	// Variables
