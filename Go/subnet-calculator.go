@@ -4,7 +4,11 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"regexp"
+)
 
 // CREATE FUNCTIONS FOR EACH TASK
 // -sanitizer
@@ -14,19 +18,31 @@ import "fmt"
 // -CIDR IP Range
 // -Subnet Mask
 
+// FUNCTION
+// Sanitize input to verify is the input is an IP with a CIDR
+//
+// EXAMPLE
+// 0.0.0.0/0
+// 000.000.000.000/00
 func sanitizeInput(ip string) bool {
-	// variables
-	//var ip_bool bool
-	length := len([]rune(ip))
 
-	// First check to see if the input is within range
-	// of the min and max lenth an IP can be.
-	// min: 0.0.0.0/0 = 9
-	// max: 255.255.255.255/00 = 18
-	if length >= 9 && length <= 18 {
-		return true
+	var regex string = "^[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\/[\\d]{1,2}$"
+
+	found, err := regexp.MatchString(regex, ip)
+
+	fmt.Println("Error", err)
+	fmt.Println("Found", found)
+
+	if err != nil {
+		log.Fatalln(err)
 	}
-	return false
+
+	if found == true {
+		fmt.Println(found)
+		return true
+	} else {
+		return false
+	}
 }
 
 func main() {
