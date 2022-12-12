@@ -28,7 +28,7 @@ var ipEntered string
 // FUNCTION
 // Determine the total number of IP's based on CIDR
 func getTotalIPs(cidr int) {
-
+	fmt.Println(cidr)
 }
 
 // FUNCTION
@@ -103,9 +103,9 @@ func main() {
 	var realIP bool = sanitizeInput(ip)
 
 	if realIP == true {
-		test := splitIP(ip)
-		fmt.Println(test)
+		ip_split := splitIP(ip)
 		fmt.Print("Entered IP: ", ipEntered, "\n")
+		getTotalIPs(ip_split[4])
 	} else {
 		fmt.Println("Not an IP address with CIDR")
 	}
