@@ -32,7 +32,7 @@ func getTotalIPs(cidr int) {
 	if cidr >= 1 && cidr <= 32 {
 		fmt.Println(cidr)
 	} else {
-		fmt.Println(cidr)
+		fmt.Println("CIDR out of range")
 	}
 }
 
