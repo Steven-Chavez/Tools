@@ -31,11 +31,11 @@ func getTotalIPs(cidr int) {
 
 	if cidr >= 1 && cidr <= 32 {
 		if cidr >= 20 && cidr <= 32 {
-
+			fmt.Println("CIDR Between 20-32")
 		} else if cidr >= 10 && cidr <= 19 {
-
+			fmt.Println("CIDR Between 10-19")
 		} else if cidr >= 1 && cidr <= 9 {
-
+			fmt.Println("CIDR Between 1-9")
 		}
 	} else {
 		fmt.Println("CIDR out of range")
