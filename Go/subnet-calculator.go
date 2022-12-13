@@ -28,7 +28,12 @@ var ipEntered string
 // FUNCTION
 // Determine the total number of IP's based on CIDR
 func getTotalIPs(cidr int) {
-	fmt.Println(cidr)
+
+	if cidr >= 1 && cidr <= 32 {
+		fmt.Println(cidr)
+	} else {
+		fmt.Println(cidr)
+	}
 }
 
 // FUNCTION
