@@ -12,11 +12,6 @@ import (
 	"strings"
 )
 
-//Output Variables
-var ipEntered string
-
-//var totalIPs strings
-
 // CREATE FUNCTIONS FOR EACH TASK
 // xsanitizer
 // xspliter
