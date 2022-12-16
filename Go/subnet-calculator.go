@@ -19,6 +19,9 @@ import (
 // -IP's in Range
 // -CIDR IP Range
 // -Subnet Mask
+func buildReport(input string) {
+
+}
 
 // FUNCTION
 // Determine the total number of IP's based on CIDR
