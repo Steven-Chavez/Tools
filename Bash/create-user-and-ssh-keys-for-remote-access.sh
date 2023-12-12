@@ -14,7 +14,6 @@ echo $password
 # Create the user
 useradd -m "$username"
 
-# Set the password (Note: This is not secure for production use!)
 echo "$username:$password" | chpasswd
 
 usermod -aG sudo $username
