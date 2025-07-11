@@ -15,7 +15,7 @@ This script performs the following tasks:
 Author: Steven Chavez
 Date: 9/9/2024
 
-Usage: python3 UbuntuLunix-CollectorSetup.py
+Usage: python3 UbuntuLunix-SyslogCollectorSetup.py
 
 """
 import subprocess
