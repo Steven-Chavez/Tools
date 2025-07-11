@@ -7,7 +7,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Define the username and password
-username="avmadmin"
+username="cyberadmin"
 password=$(openssl rand -base64 24)
 echo $password
 
@@ -27,6 +27,6 @@ echo "$username ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$username-nopasswd
 systemctl restart ssh
 
 echo ""
-echo "Provide the below SSH key to your Avertium POC in a secure way"
+echo "Provide the below SSH key to your POC in a secure way"
 echo ""
 cat /home/$username/.ssh/id_rsa
