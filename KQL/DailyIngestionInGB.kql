@@ -1,0 +1,8 @@
+let TimeRangeStart = ago(30d);
+Usage
+| where TimeGenerated >= TimeRangeStart
+| where IsBillable == true
+| summarize DataGB = sum(Quantity / 1000) by bin(TimeGenerated, 1d)
+| order by TimeGenerated asc
+| project Date = format_datetime(TimeGenerated, 'yyyy-MM-dd'), DataGB
+| render timechart with (title = "Daily ingestion in GB")
