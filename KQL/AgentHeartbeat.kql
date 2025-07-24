@@ -1,0 +1,5 @@
+Heartbeat
+| where TimeGenerated > ago(7d)
+| where Computer contains "<Host Name>"
+| summarize count() by Computer, bin(TimeGenerated,1h)
+| render columnchart
