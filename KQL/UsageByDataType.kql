@@ -1,0 +1,5 @@
+let TimeRangeStart = ago(60d);
+Usage
+| where TimeGenerated >= TimeRangeStart
+| summarize TotalReceivedBytes = sum(Quantity) by DataType, bin(TimeGenerated, 24h)
+| render timechart
