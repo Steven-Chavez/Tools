@@ -1,0 +1,30 @@
+// Author: Steven Chavez
+// Rule: Abnormal Data Ingestion
+// Date: 4/17/2025
+// Version: 2.0.1
+// 
+// Summary: KQL Query to detect abnormal spikes or drops in usage
+let day_of_week_int = toint(dayofweek(now()) / 1d);
+let percentage = 80;
+let average = toscalar(
+    Usage
+    | where TimeGenerated > ago(14d)
+    | summarize avgUsage = round(sum(Quantity / 1024) / 14, 2)
+    | project todecimal(avgUsage)
+    );
+Usage 
+| where TimeGenerated > ago(24h)
+| where IsBillable == true
+| summarize Usage24H = round(sum(Quantity / 1024.0), 2)
+| extend spikeThreshold = average + (average * (percentage / 100.0))
+| extend dropThreshold = average - (average * (percentage / 100.0))
+| extend Status = iff(Usage24H > spikeThreshold, "Abnormal Spike", iff(Usage24H < dropThreshold, "Abnormal Drop", "Normal Ingestion"))
+| where Status != "Normal Ingestion"
+// 0 = Sunday and 6 = Saturday
+| where not(Status == "Abnormal Drop" and (day_of_week_int == 0 or day_of_week_int == 6))
+| project
+    Status,
+    average,
+    ["Total GBs used for the last day"] = Usage24H,
+    ["Drop Threshold"] = dropThreshold,
+    ["Spike Threshold"] = spikeThreshold
